@@ -78,15 +78,17 @@ fun main(){
     val person = Person("mario yobany", LocalDate.parse("2000-12-24"),"M",false)
     val zones = listOf<IZone>(
         MarginalZone("mar","marginal",2.00),
-        ResidencialZone("res","residencial",8.00),
-        UrbanZone("urb","urbana",10.00)
+        RuralZone("rur","rural",8.00),
+        UrbanZone("urb","urbana",10.00),
+        ResidencialZone("res","residencial",25.00)
+
     )
-    val texBuilde = Tax.Builder(folio = 1,payMetDate = LocalDate.now(),ower = person)
+    val tax = Tax.Builder(folio = 1,payMetDate = LocalDate.now(),ower = person)
         .addProp(Property(1200.0,zones[1]))
         .addProp(Property(500.0,zones[3]))
         .build()
     val format = DecimalFormat("#,###.00")
-    print("El impuesto a pagar de : ${person.fullname} es de: $${format.format(texBuilde.totalTax())}")
+    print("El impuesto a pagar de : ${person.fullname} es de: $${format.format(tax.totalTax())}")
 
 }
 
